@@ -4,11 +4,11 @@ import torchvision.transforms as transforms
 from torchvision import models
 from torch.nn import functional as F
 from PIL import Image
+import sys
 
-# import nn
+model_load_path = sys.argv[1]
 
 # Load the saved model
-model_load_path = "./hotdog_classifier.pth"
 loaded_model = models.resnet18(weights="ResNet18_Weights.DEFAULT")
 num_features = loaded_model.fc.in_features
 loaded_model.fc = torch.nn.Linear(num_features, 2)

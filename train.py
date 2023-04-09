@@ -3,6 +3,12 @@ import torch.nn as nn
 import torch.optim as optim
 from torchvision import datasets, models, transforms
 from torch.utils.data import DataLoader
+import sys
+
+# Get the path of training dataset and testing dataset from the command line
+
+train_dataset_path = sys.argv[1]
+test_dataset_path = sys.argv[2]
 
 # Data preprocessing
 data_transforms = {
@@ -22,8 +28,8 @@ data_transforms = {
 }
 
 # Load data
-train_data = datasets.ImageFolder('./dataset/train', data_transforms['train'])
-val_data = datasets.ImageFolder('./dataset/test', data_transforms['val'])
+train_data = datasets.ImageFolder(train_dataset_path, data_transforms['train'])
+val_data = datasets.ImageFolder(test_dataset_path, data_transforms['val'])
 
 train_loader = DataLoader(train_data, batch_size=64, shuffle=True)
 val_loader = DataLoader(val_data, batch_size=64, shuffle=False)
